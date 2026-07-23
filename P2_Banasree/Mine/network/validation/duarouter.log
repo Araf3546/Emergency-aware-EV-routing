@@ -1,0 +1,10 @@
+COMMAND:
+"C:\Program Files (x86)\Eclipse\Sumo\bin\duarouter.exe" --net-file network\porto.net.xml --route-files network\validation\routeability_sample.trips.xml --output-file network\validation\routeability_sample.rou.xml --ignore-errors true --no-warnings true
+
+STDOUT:
+Reading up to time step: 0.00
+Reading up to time step: 200.00
+Success.
+
+
+STDERR:

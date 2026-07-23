@@ -1,0 +1,29 @@
+scenario:
+  name: porto_baseline_v1
+  study_city: Porto, Portugal
+  study_area_file: config/porto_study_area.geojson
+
+simulation:
+  duration_seconds: 3600
+  sumo_version: "1.25.0"
+
+demand:
+  total_vehicles: 8000
+  normal_vehicles: 7520
+  emergency_vehicles: 480
+  emergency_ratio: 0.06
+  calibration_window_local: "14:00-16:00"
+  calibration_window_seconds: 7200
+  departure_time_mapping: "linearly map the 14:00-16:00 observed Porto-local window to the 3600-second simulation"
+
+seeds:
+  base: 20260721
+  demand_generation: 20260721
+  route_choice: 20260722
+  incident_generation: 20260723
+  evaluation_runs:
+    - 20260721
+
+protocol:
+  message_radius_m: 250
+  freshness_window_seconds: 5

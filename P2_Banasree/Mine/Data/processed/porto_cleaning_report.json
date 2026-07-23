@@ -1,0 +1,14 @@
+{
+  "report_version": 1,
+  "generated_at_utc": "2026-07-21T18:54:41.424965+00:00",
+  "raw_archive": "Data\\raw\\porto\\train.csv.zip",
+  "study_area": "config\\porto_study_area.geojson",
+  "selection_rule": "MISSING_DATA is false; at least two GPS points; both origin and destination are inside the approved study-area polygon.",
+  "counts": {
+    "input_rows": 1710670,
+    "rejected_outside_study_area": 1610964,
+    "retained_rows": 63188,
+    "rejected_short_polyline": 36508,
+    "rejected_missing_data": 10
+  }
+}
