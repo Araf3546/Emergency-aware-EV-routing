@@ -1,0 +1,4 @@
+# Version 1 files kept OUTSIDE git (over GitHub's 100 MB limit). They are kept locally only (gitignored);
+# keep a copy on an external backup. Verify a copy with: sha256sum -c V1_EXTERNAL_FILES.sha256
+210dd0a20da66a8fc2de3440aecd84670921bc257591f8365a4475e31453c5ea  Data/raw/train.csv.zip
+f4fef417c83e64fd7d4c0c2a558093470bece0a05d125ce7f913cc8212b4df3c  results/_invalid/default_output_sink/baseline_smoke_test/emissions.xml
