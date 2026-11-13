@@ -1,0 +1,48 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local secrets and environment configuration
+.env
+.env.*
+!.env.example
+
+# The raw Porto archive is over GitHub's 100 MB file limit. It is kept locally;
+# its SHA-256 and provenance are recorded in Data/raw/porto/.
+/Data/raw/train.csv.zip
+/Data/raw/**/*.zip
+
+# Local build/package outputs
+/build/
+/dist/
+*.egg-info/
+
+# Optuna campaign databases and lock files are mutable local state, not source
+/results/**/*.db
+/results/**/*.db-journal
+/results/**/*.lock
+
+# Simulation logs and transient console output
+/results/**/*.log
+/results/**/*.out
+/results/**/*.err
+/results/**/sumo_errors*.txt
+
+# Large transient SUMO outputs; reports, JSON, TSV, Markdown, and figures remain trackable
+/results/**/*.xml
+/results/**/*.sqlite
+
+# Seed-71 freeze working files (about 0.8 GB, created later on the second computer)
+/results/seed_71/freeze/work/
