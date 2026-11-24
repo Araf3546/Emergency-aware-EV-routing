@@ -1,0 +1,100 @@
+{
+  "report_version": 1,
+  "generated_at_utc": "2026-08-06T17:04:16.594382+00:00",
+  "purpose": "Scenario-specific emergency dispatch validation for the seeded Porto thesis scenario.",
+  "inputs": {
+    "scenario": "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\scenarios\\emergency_scenarios.yaml",
+    "scenario_sha256": "a91aa25d481c466c2412132474221feda1b8e94df534e0a90958c1cff9596c5f",
+    "network": "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\porto.net.xml",
+    "network_sha256": "25d8d5b6377720892ad1dd1db4df7fd97d83e247115ccd8919f40a60e11051d7",
+    "routeability_trip_file": "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\validation\\routeability_sample.trips.xml",
+    "routeability_trip_file_sha256": "1c50e891fa972b803aac4f91719f8208c28e8f979bc3c7618a3e7ef870cd2055",
+    "routeability_route_file": "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\validation\\routeability_sample.rou.xml",
+    "routeability_route_file_sha256": "afae70fadf1e1eb322e8326032d19dba85c10af698061688810ceba68669218a"
+  },
+  "artifacts": {
+    "dispatch_trip_file": "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\validation\\emergency_dispatch_validation.trips.xml",
+    "dispatch_route_file": "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\validation\\emergency_dispatch_validation.rou.xml",
+    "error_log": "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\validation\\emergency_dispatch_validation.log",
+    "command": [
+      "C:\\Program Files (x86)\\Eclipse\\Sumo\\bin\\duarouter.exe",
+      "--net-file",
+      "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\porto.net.xml",
+      "--route-files",
+      "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\validation\\emergency_dispatch_validation.trips.xml",
+      "--output-file",
+      "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\validation\\emergency_dispatch_validation.rou.xml",
+      "--error-log",
+      "D:\\p3\\P2_Banasree\\P2_Banasree\\Mine\\network\\validation\\emergency_dispatch_validation.log"
+    ]
+  },
+  "results": {
+    "duarouter_exit_code": 0,
+    "dispatch_count": 3,
+    "routeable_dispatches": 3,
+    "unrouteable_dispatches": 0,
+    "reference_matches": 3
+  },
+  "dispatches": [
+    {
+      "event_id": 401,
+      "dispatch_id": "emergency_dispatch_401",
+      "vehicle_type": "ambulance",
+      "origin_edge": "14327351#2",
+      "destination_edge": 734630276,
+      "departure_time": 780,
+      "route_status": "routeable",
+      "dispatch_routed": true,
+      "validated_route_reference": {
+        "trip_id": "routeability_00008",
+        "route_status": "routeable",
+        "source_file": "network/validation/routeability_sample.trips.xml",
+        "routed_file": "network/validation/routeability_sample.rou.xml"
+      },
+      "validated_route_reference_present": true,
+      "validated_route_reference_edges_match": true,
+      "reason": ""
+    },
+    {
+      "event_id": 402,
+      "dispatch_id": "emergency_dispatch_402",
+      "vehicle_type": "fire_truck",
+      "origin_edge": "1017147077#1",
+      "destination_edge": "14327545#0",
+      "departure_time": 1680,
+      "route_status": "routeable",
+      "dispatch_routed": true,
+      "validated_route_reference": {
+        "trip_id": "routeability_00013",
+        "route_status": "routeable",
+        "source_file": "network/validation/routeability_sample.trips.xml",
+        "routed_file": "network/validation/routeability_sample.rou.xml"
+      },
+      "validated_route_reference_present": true,
+      "validated_route_reference_edges_match": true,
+      "reason": ""
+    },
+    {
+      "event_id": 403,
+      "dispatch_id": "emergency_dispatch_403",
+      "vehicle_type": "police",
+      "origin_edge": "434879921#0",
+      "destination_edge": "206720846#7",
+      "departure_time": 2520,
+      "route_status": "routeable",
+      "dispatch_routed": true,
+      "validated_route_reference": {
+        "trip_id": "routeability_00014",
+        "route_status": "routeable",
+        "source_file": "network/validation/routeability_sample.trips.xml",
+        "routed_file": "network/validation/routeability_sample.rou.xml"
+      },
+      "validated_route_reference_present": true,
+      "validated_route_reference_edges_match": true,
+      "reason": ""
+    }
+  ],
+  "passed": true,
+  "stdout": "Reading up to time step: 780.00\nReading up to time step: 980.00\nReading up to time step: 1180.00\nReading up to time step: 1380.00\nReading up to time step: 1580.00\nReading up to time step: 1780.00\nReading up to time step: 1980.00\nReading up to time step: 2180.00\nReading up to time step: 2380.00\nReading up to time step: 2580.00\nSuccess.\n",
+  "stderr": ""
+}

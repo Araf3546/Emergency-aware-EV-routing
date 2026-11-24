@@ -1,0 +1,104 @@
+scenario_name: porto_emergency_seeded_v3
+study_city: Porto, Portugal
+scenario_version: 3
+# v3 (2026-09-08): events 402 and 403 replaced. They had 5 and 3 decision points - road
+# segments with more than one onward option - so an emergency-aware *routing* effect had
+# almost nowhere to act on them. Measurement, not judgement, forced this: over a full
+# 3,600 s run the emergency term differed between candidate edges in 4 of 2,076 route
+# selections, and 169 of 173 "avoid the responder's edge" signals arrived at junctions with
+# one way out. The replacements have 37 and 22 decision points. Event 401 is unchanged.
+# Contract v0.6 section 11, decision 13.11.
+#
+# v2 (2026-09-04): dispatch departure_time moved to incident start_time + 60 s.
+# In v1 every responder departed ~120 s BEFORE the incident it was responding to,
+# which is physically impossible and produced negative response times once traffic
+# actually flowed. Incident windows are unchanged. Routes are unchanged, so the
+# Gate D reachability validation still holds (route validity is time-independent).
+dispatch_delay_seconds: 60
+source_of_truth:
+  network_validation_report: network/network_validation.json
+  routeability_validation_report: network/routeability_validation.json
+  routeability_trip_file: network/validation/routeability_sample.trips.xml
+  routeability_route_file: network/validation/routeability_sample.rou.xml
+protocol_settings:
+  message_radius_m: 250
+  freshness_window_seconds: 3   # contract v0.7 (13.14): the value every run has used; was 5, unread by code
+  emergency_vehicle_ratio: 0.06
+  baseline_seed: 20260721
+events:
+  - event_id: 404
+    seed: 20260726
+    incident_type: fire
+    start_time: 600
+    end_time: 900
+    center_edge: "350915450#1"
+    affected_edges:
+      - "350915450#1"
+    sumo_action: close_edge
+    capacity_factor: 0.0
+    # 1,797 m, 37 decision points. The routing case: dispatched while the network is still
+    # free-flowing (mean speed 8.7 m/s at t=660), on the longest and most-branching route in
+    # the set, so emergency-aware rerouting has room to act if it works at all.
+    dispatch:
+      vehicle_id: emergency_dispatch_404
+      vehicle_type: fire_truck
+      origin_edge: "1082492468#2"
+      destination_edge: "350915450#1"
+      departure_time: 660
+      validated_route_reference:
+        trip_id: routeability_07399
+        route_status: routeable
+        source_file: network/validation/routeability_sample.trips.xml
+        routed_file: network/validation/routeability_sample.rou.xml
+
+  - event_id: 401
+    seed: 20260723
+    incident_type: accident
+    start_time: 900
+    end_time: 1230
+    center_edge: "734630276"
+    affected_edges:
+      - "734630276"
+    sumo_action: close_edge
+    capacity_factor: 0.0
+    # 631 m, 12 decision points. Unchanged from v2, deliberately. It is the constrained
+    # corridor: too few forks to demonstrate rerouting, which makes it the case where any
+    # improvement must come from yielding. It is also the only event with a measured
+    # multi-seed baseline (501-588 s), so it anchors the new set to the old measurements.
+    dispatch:
+      vehicle_id: emergency_dispatch_401
+      vehicle_type: ambulance
+      origin_edge: "14327351#2"
+      destination_edge: "734630276"
+      departure_time: 960
+      validated_route_reference:
+        trip_id: routeability_00008
+        route_status: routeable
+        source_file: network/validation/routeability_sample.trips.xml
+        routed_file: network/validation/routeability_sample.rou.xml
+
+  - event_id: 405
+    seed: 20260727
+    incident_type: collision
+    start_time: 2100
+    end_time: 2400
+    center_edge: "-482327709#6"
+    affected_edges:
+      - "-482327709#6"
+    sumo_action: close_edge
+    capacity_factor: 0.0
+    # 1,197 m, 22 decision points. The congested case: dispatched at t=2,160 when the
+    # network is saturated (mean speed 1.4 m/s, 62% of vehicles halting), so it tests both
+    # mechanisms under stress. Estimated arrival about t=3,215, which leaves roughly 385 s
+    # of margin before the run ends - this one must be checked for censoring on every run.
+    dispatch:
+      vehicle_id: emergency_dispatch_405
+      vehicle_type: police
+      origin_edge: "14326493#0"
+      destination_edge: "-482327709#6"
+      departure_time: 2160
+      validated_route_reference:
+        trip_id: routeability_01973
+        route_status: routeable
+        source_file: network/validation/routeability_sample.trips.xml
+        routed_file: network/validation/routeability_sample.rou.xml

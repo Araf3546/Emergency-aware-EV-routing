@@ -1,0 +1,56 @@
+{
+  "report_version": 1,
+  "generated_at_utc": "2026-09-05T19:33:56.187677+00:00",
+  "purpose": "Ambient emergency-class demand (contract section 11, decision 13.1 population 1).",
+  "inputs": {
+    "od_pairs": "demand\\od_pairs.csv",
+    "od_pairs_sha256": "c425c6a1a73442dd1bc3f4013d16ef5c0f0f84df96a35b226174f811e6322fde",
+    "network": "network\\porto.net.xml",
+    "network_sha256": "25d8d5b6377720892ad1dd1db4df7fd97d83e247115ccd8919f40a60e11051d7",
+    "demand_seed": 20260723,
+    "route_seed": 20260724,
+    "emergency_vehicles": 240,
+    "simulation_duration_seconds": 3600,
+    "max_speed_mps": 16.67,
+    "speed_factor": 1.2
+  },
+  "artifacts": {
+    "trips_file": "demand\\porto.emergency.trips.xml",
+    "trips_file_sha256": "c3d0da47bdfcf07e12b35fe38b0aced7aa0b4704db5ea10ec356616580ea72d1",
+    "route_file": "demand\\porto.emergency.rou.xml",
+    "route_file_sha256": "3cde981cb06c5343e8a38c7f5959866e40e79ef699ad23ff3e8b7b26067d092c",
+    "error_log": "demand\\emergency_demand_generation_errors.log"
+  },
+  "command": [
+    "C:\\Program Files (x86)\\Eclipse\\Sumo\\bin\\duarouter.exe",
+    "--net-file",
+    "network\\porto.net.xml",
+    "--route-files",
+    "demand\\porto.emergency.trips.xml",
+    "--output-file",
+    "demand\\porto.emergency.rou.xml",
+    "--seed",
+    "20260724",
+    "--remove-loops",
+    "true",
+    "--unsorted-input",
+    "true",
+    "--error-log",
+    "demand\\emergency_demand_generation_errors.log"
+  ],
+  "duarouter_exit_code": 0,
+  "trip_count": 240,
+  "routed_vehicle_count": 240,
+  "all_trips_routed": true,
+  "rejected_trip_ids": [],
+  "vehicles_per_type": {
+    "emergency_relief_vehicle": 60,
+    "emergency_fire_truck": 60,
+    "emergency_ambulance": 60,
+    "emergency_police": 60
+  },
+  "sorting_warning_detected": false,
+  "departures_non_decreasing": true,
+  "stdout": "Reading up to time step: 26.50\nReading up to time step: 226.50\nReading up to time step: 426.50\nReading up to time step: 626.50\nReading up to time step: 826.50\nReading up to time step: 1026.50\nReading up to time step: 1226.50\nReading up to time step: 1426.50\nReading up to time step: 1626.50\nReading up to time step: 1826.50\nReading up to time step: 2026.50\nReading up to time step: 2226.50\nReading up to time step: 2426.50\nReading up to time step: 2626.50\nReading up to time step: 2826.50\nReading up to time step: 3026.50\nReading up to time step: 3226.50\nReading up to time step: 3426.50\nReading up to time step: 3626.50\nSuccess.\n",
+  "stderr": ""
+}

@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes><vType id="ambulance" vClass="emergency" color="white" /><vType id="fire_truck" vClass="emergency" color="red" /><vType id="police" vClass="emergency" color="blue" /><trip id="emergency_dispatch_401" depart="780" type="ambulance" from="14327351#2" to="734630276" /><trip id="emergency_dispatch_402" depart="1680" type="fire_truck" from="1017147077#1" to="14327545#0" /><trip id="emergency_dispatch_403" depart="2520" type="police" from="434879921#0" to="206720846#7" /></routes>

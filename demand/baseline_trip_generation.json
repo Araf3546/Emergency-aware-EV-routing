@@ -1,0 +1,21 @@
+{
+  "report_version": 1,
+  "generated_at_utc": "2026-09-05T19:33:36.479830+00:00",
+  "purpose": "Normal-traffic baseline demand; emergency vehicles excluded pending validated emergency scenarios.",
+  "inputs": {
+    "od_pairs": "demand\\od_pairs.csv",
+    "od_pairs_sha256": "c425c6a1a73442dd1bc3f4013d16ef5c0f0f84df96a35b226174f811e6322fde",
+    "seed": 20260721,
+    "normal_vehicles": 3760,
+    "simulation_duration_seconds": 3600,
+    "source_window_local": "14:00-16:00",
+    "source_window_seconds": 7200,
+    "departure_time_mapping": "linear mapping from source window to simulation duration",
+    "sampling": "seeded sampling with replacement from mapped OD pairs in the source window"
+  },
+  "output": {
+    "trip_file": "demand\\porto.trips.xml",
+    "trip_file_sha256": "2cbc8a2fce0e297686224c0e6242d463e332a642c007f7d265b3c93ac6a80a58"
+  },
+  "available_mapped_pairs_in_window": 6875
+}

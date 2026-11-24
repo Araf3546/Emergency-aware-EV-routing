@@ -1,0 +1,100 @@
+{
+  "report_version": 1,
+  "generated_at_utc": "2026-09-08T15:32:20.243596+00:00",
+  "purpose": "Scenario-specific emergency dispatch validation for the seeded Porto thesis scenario.",
+  "inputs": {
+    "scenario": "scenarios\\emergency_scenarios.yaml",
+    "scenario_sha256": "a9398609daac03b93d3aff5ce36d5c01a4caccacfd05ea704b6f470aa7798d10",
+    "network": "network\\porto.net.xml",
+    "network_sha256": "25d8d5b6377720892ad1dd1db4df7fd97d83e247115ccd8919f40a60e11051d7",
+    "routeability_trip_file": "network\\validation\\routeability_sample.trips.xml",
+    "routeability_trip_file_sha256": "1c50e891fa972b803aac4f91719f8208c28e8f979bc3c7618a3e7ef870cd2055",
+    "routeability_route_file": "network\\validation\\routeability_sample.rou.xml",
+    "routeability_route_file_sha256": "afae70fadf1e1eb322e8326032d19dba85c10af698061688810ceba68669218a"
+  },
+  "artifacts": {
+    "dispatch_trip_file": "network\\validation\\emergency_dispatch_validation.trips.xml",
+    "dispatch_route_file": "network\\validation\\emergency_dispatch_validation.rou.xml",
+    "error_log": "network\\validation\\emergency_dispatch_validation.log",
+    "command": [
+      "C:\\Program Files (x86)\\Eclipse\\Sumo\\bin\\duarouter.exe",
+      "--net-file",
+      "network\\porto.net.xml",
+      "--route-files",
+      "network\\validation\\emergency_dispatch_validation.trips.xml",
+      "--output-file",
+      "network\\validation\\emergency_dispatch_validation.rou.xml",
+      "--error-log",
+      "network\\validation\\emergency_dispatch_validation.log"
+    ]
+  },
+  "results": {
+    "duarouter_exit_code": 0,
+    "dispatch_count": 3,
+    "routeable_dispatches": 3,
+    "unrouteable_dispatches": 0,
+    "reference_matches": 3
+  },
+  "dispatches": [
+    {
+      "event_id": 404,
+      "dispatch_id": "emergency_dispatch_404",
+      "vehicle_type": "fire_truck",
+      "origin_edge": "1082492468#2",
+      "destination_edge": "350915450#1",
+      "departure_time": 660,
+      "route_status": "routeable",
+      "dispatch_routed": true,
+      "validated_route_reference": {
+        "trip_id": "routeability_07399",
+        "route_status": "routeable",
+        "source_file": "network/validation/routeability_sample.trips.xml",
+        "routed_file": "network/validation/routeability_sample.rou.xml"
+      },
+      "validated_route_reference_present": true,
+      "validated_route_reference_edges_match": true,
+      "reason": ""
+    },
+    {
+      "event_id": 401,
+      "dispatch_id": "emergency_dispatch_401",
+      "vehicle_type": "ambulance",
+      "origin_edge": "14327351#2",
+      "destination_edge": "734630276",
+      "departure_time": 960,
+      "route_status": "routeable",
+      "dispatch_routed": true,
+      "validated_route_reference": {
+        "trip_id": "routeability_00008",
+        "route_status": "routeable",
+        "source_file": "network/validation/routeability_sample.trips.xml",
+        "routed_file": "network/validation/routeability_sample.rou.xml"
+      },
+      "validated_route_reference_present": true,
+      "validated_route_reference_edges_match": true,
+      "reason": ""
+    },
+    {
+      "event_id": 405,
+      "dispatch_id": "emergency_dispatch_405",
+      "vehicle_type": "police",
+      "origin_edge": "14326493#0",
+      "destination_edge": "-482327709#6",
+      "departure_time": 2160,
+      "route_status": "routeable",
+      "dispatch_routed": true,
+      "validated_route_reference": {
+        "trip_id": "routeability_01973",
+        "route_status": "routeable",
+        "source_file": "network/validation/routeability_sample.trips.xml",
+        "routed_file": "network/validation/routeability_sample.rou.xml"
+      },
+      "validated_route_reference_present": true,
+      "validated_route_reference_edges_match": true,
+      "reason": ""
+    }
+  ],
+  "passed": true,
+  "stdout": "Reading up to time step: 660.00\nReading up to time step: 860.00\nReading up to time step: 1060.00\nReading up to time step: 1260.00\nReading up to time step: 1460.00\nReading up to time step: 1660.00\nReading up to time step: 1860.00\nReading up to time step: 2060.00\nReading up to time step: 2260.00\nSuccess.\n",
+  "stderr": ""
+}

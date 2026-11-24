@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+    <input>
+        <net-file value="network/porto.net.xml"/>
+        <route-files value="demand/porto.rou.xml,demand/porto.emergency.rou.xml,demand/porto.dispatch.rou.xml"/>
+    </input>
+
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+        <step-length value="1"/>
+        <seed value="20260722"/>
+    </time>
+
+    <!-- A hard incident closure (contract section 11, decision 13.2) blocks vehicles whose
+         origin edge is the closed edge. SUMO aborts the whole run on such an insertion
+         failure by default, so it is downgraded to a warning here. The affected vehicles
+         are still logged and MUST be counted and reported (contract section 5). -->
+    <processing>
+        <ignore-route-errors value="true"/>
+    </processing>
+
+    <!-- Outputs (2026-09-13). This file used to send tripinfo, summary, per-step emission and
+         queue output, and the message log to results/baseline_smoke_test/ by default. Every run
+         that did not name its own outputs - tuning trials included - wrote into that folder, so
+         its files came from different runs and dates and the per-step emission output cost wall
+         time. No runner reads these defaults: every current runner passes its own
+         -tripinfo-output (and usually -summary-output / -error-log), and
+         scripts/12_measure_emergency_response.py derives its own config. So a run that names
+         no outputs now writes none, and SUMO's messages go to the console. Outputs affect no
+         dynamics. -->
+
+    <report>
+        <no-step-log value="true"/>
+        <no-warnings value="false"/>
+        <verbose value="false"/>
+        <duration-log.disable value="false"/>
+    </report>
+</configuration>

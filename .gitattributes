@@ -1,0 +1,3 @@
+# Store and restore every file byte for byte. The project's code fingerprint and all stored evidence hashes are
+# SHA-256 over exact bytes, and the files mix CRLF and LF line endings; any line-ending conversion would break them.
+* -text

@@ -1,0 +1,84 @@
+scenario:
+  name: porto_baseline_v1
+  study_city: Porto, Portugal
+  study_area_file: config/porto_study_area.geojson
+
+simulation:
+  duration_seconds: 3600
+  sumo_version: "1.25.0"
+
+demand:
+  # Set from the measured capacity sweep, not chosen arbitrarily - see
+  # experiment_contract.md section 11, decision 13.8.
+  total_vehicles: 4000
+  normal_vehicles: 3760
+  emergency_vehicles: 240
+  emergency_ratio: 0.06
+  # Contract v0.7, decision 13.13: every ordinary vehicle's speedFactor is frozen in
+  # demand/porto.rou.xml from SUMO's own draw under sumo_seed_for_speed_factors, by
+  # scripts/08b_freeze_speed_factors.py. Manifest: demand/porto.speed_factors.json.
+  # Every other evaluation/tuning seed has its own file, demand/seeds/porto.rou.<seed>.xml,
+  # with manifest demand/seeds/porto.speed_factors.<seed>.json (decision 13.15).
+  speed_factors: frozen_per_vehicle
+  sumo_seed_for_speed_factors: 20260722
+  network_stable_capacity_vehicles_per_hour: 4000
+  breakdown_observed_at_vehicles_per_hour: 5000
+  calibration_window_local: "14:00-16:00"
+  calibration_window_seconds: 7200
+  departure_time_mapping: "linearly map the 14:00-16:00 observed Porto-local window to the 3600-second simulation"
+
+seeds:
+  base: 20260721
+  # Fixes which trips exist (scripts/07). Held constant across every evaluation seed.
+  demand_generation: 20260721
+  # Default route-choice seed (ACO, ACO-PSO, E3) for a run with no evaluation seed; equals
+  # the SUMO seed in simulation.sumocfg, so the default run IS evaluation seed 20260722.
+  route_choice: 20260722
+  incident_generation: 20260723
+  # Contract v0.8, decision 13.15. Each evaluation seed s sets SUMO --seed s, the frozen
+  # demand file harvested under s, and the route-choice seed s - all three through
+  # evaluation_seeds.py, never separately. This list previously read [20260721], which no
+  # code read: every recorded run used 20260722 for both SUMO and route choice.
+  evaluation_runs:
+    - 20260722
+    - 20260723
+    - 20260724
+    - 20260725
+    - 20260726
+  # Held-out weight-tuning seed (decision 13.15): never an evaluation seed, so the weights
+  # are not tuned on the runs that report them. Frozen like the others.
+  tuning: 20260721
+
+protocol:
+  # Contract v0.7, decision 13.14: these describe what the code runs. They were previously
+  # 5 s / 3 hops / multi-hop enabled, and no code read them - every run used 3 s, one step,
+  # no forwarding, no range limit on the messages the router reads.
+  message_radius_m: 250        # used by the yielding rule only (p3_runtime.YIELD_RADIUS_M)
+  freshness_window_seconds: 3  # P3RuntimeCoordinator default; every recorded run used 3
+  routing_message_range: unlimited   # every vehicle hears every other vehicle's latest message
+  hop_limit: 1
+  multi_hop_enabled: false     # superseded 13.7; see 13.14 for why it is not implemented
+  latency_model: none          # explicit simplification, locked 2026-09-03 - see experiment_contract.md section 11
+
+emergency:
+  vclass_exempt_from_closure: emergency
+  arrival_definition: dispatch_vehicle_reaches_center_edge
+  # Response time is NOT bounded by the incident window - see experiment_contract.md
+  # section 11, decision 13.10. A responder reaching the centre edge after end_time
+  # still yields a valid measurement; it is flagged, never dropped.
+  response_time_requires_active_incident: false
+  dispatch_scenario_file: scenarios/emergency_scenarios.yaml
+  ambient_vehicles: 240        # same population as demand.emergency_vehicles above
+  dispatch_vehicles: 3         # scripted, see dispatch_scenario_file
+  dispatch_delay_seconds: 60   # responder departs this long after its incident starts
+
+tuning:
+  duration_seconds: 3600       # must equal simulation.duration_seconds; do not tune at a shorter window
+  # Audit C10. Empty means E3 runs on p3_hybrid_router.DEFAULT_WEIGHTS, which is what every
+  # recorded result used. Set it to a tuned file (e.g. results/<study>/best_e3_weights.json)
+  # to make the runtime load that weight set; P3_E3_WEIGHTS overrides it for one process.
+  # Changing this changes every E3 result, so it is a contract-level change (section 10).
+  weights_file:
+
+baselines:
+  dijkstra_and_astar_must_be_full_destination_valid: true

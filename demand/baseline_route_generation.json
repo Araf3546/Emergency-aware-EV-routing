@@ -1,0 +1,44 @@
+{
+  "report_version": 1,
+  "generated_at_utc": "2026-09-05T19:33:40.760135+00:00",
+  "inputs": {
+    "network": "network\\porto.net.xml",
+    "network_sha256": "25d8d5b6377720892ad1dd1db4df7fd97d83e247115ccd8919f40a60e11051d7",
+    "trips": "demand\\porto.trips.xml",
+    "trips_sha256": "2cbc8a2fce0e297686224c0e6242d463e332a642c007f7d265b3c93ac6a80a58",
+    "seed": 20260722
+  },
+  "artifacts": {
+    "output": "demand\\porto.rou.xml",
+    "output_sha256": "d8afadb6998a29340d86b71ffcddd9acfe3aea1b67abe6d2cb7a117b3c3ce743",
+    "error_log": "demand\\baseline_route_generation_errors.log"
+  },
+  "command": [
+    "C:\\Program Files (x86)\\Eclipse\\Sumo\\bin\\duarouter.exe",
+    "--net-file",
+    "network\\porto.net.xml",
+    "--route-files",
+    "demand\\porto.trips.xml",
+    "--output-file",
+    "demand\\porto.rou.xml",
+    "--seed",
+    "20260722",
+    "--remove-loops",
+    "true",
+    "--unsorted-input",
+    "true",
+    "--error-log",
+    "demand\\baseline_route_generation_errors.log"
+  ],
+  "duarouter_exit_code": 0,
+  "trip_count": 3760,
+  "routed_vehicle_count": 3760,
+  "all_trips_routed": true,
+  "rejected_trips": [],
+  "preserved_rejected_trip_reasons": true,
+  "sorting_warning_detected": false,
+  "departures_non_decreasing": true,
+  "first_out_of_order_departure_index": null,
+  "stdout": "Reading up to time step: 0.00\nReading up to time step: 200.00\nReading up to time step: 400.00\nReading up to time step: 600.00\nReading up to time step: 800.00\nReading up to time step: 1000.00\nReading up to time step: 1200.00\nReading up to time step: 1400.00\nReading up to time step: 1600.00\nReading up to time step: 1800.00\nReading up to time step: 2000.00\nReading up to time step: 2200.00\nReading up to time step: 2400.00\nReading up to time step: 2600.00\nReading up to time step: 2800.00\nReading up to time step: 3000.00\nReading up to time step: 3200.00\nReading up to time step: 3400.00\nReading up to time step: 3600.00\nSuccess.\n",
+  "stderr": ""
+}

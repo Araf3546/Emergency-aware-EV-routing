@@ -1,0 +1,64 @@
+{
+  "report_version": 1,
+  "generated_at_utc": "2026-09-05T19:40:27.508384+00:00",
+  "purpose": "Demand-level emergency dispatch routes (contract section 11, decision 13.1 population 2).",
+  "inputs": {
+    "validated_routes": "network\\validation\\emergency_dispatch_validation.rou.xml",
+    "validated_routes_sha256": "922300a3d64f7e3dd34637cdc2618e3378472e7dd799369da80a7a9fb22818f0",
+    "scenario": "scenarios\\emergency_scenarios.yaml",
+    "scenario_sha256": "11cd1c71819697fe31c77b70962234d471884c92cd29ba60c715456b132367be"
+  },
+  "artifacts": {
+    "route_file": "demand\\porto.dispatch.rou.xml",
+    "route_file_sha256": "c3ea48426c721a229ab3c0e29089a26e88da7720748cb966d5b9e791c24f61b6"
+  },
+  "insertion_attributes": {
+    "departLane": "free",
+    "departPos": "free",
+    "departSpeed": "max",
+    "rationale": "Without relaxed insertion the responder stays in SUMO's pending queue behind ordinary traffic and never enters the network."
+  },
+  "routes_recomputed": false,
+  "dispatch_count": 3,
+  "dispatch_checks": [
+    {
+      "vehicle_id": "emergency_dispatch_401",
+      "in_scenario_file": true,
+      "type_matches": true,
+      "destination_matches": true,
+      "depart": 960.0,
+      "depart_in_validated_file": 780.0,
+      "depart_taken_from_scenario": true,
+      "departs_after_incident_start": true,
+      "destination_edge": "734630276",
+      "route_edge_count": 26
+    },
+    {
+      "vehicle_id": "emergency_dispatch_402",
+      "in_scenario_file": true,
+      "type_matches": true,
+      "destination_matches": true,
+      "depart": 1860.0,
+      "depart_in_validated_file": 1680.0,
+      "depart_taken_from_scenario": true,
+      "departs_after_incident_start": true,
+      "destination_edge": "14327545#0",
+      "route_edge_count": 16
+    },
+    {
+      "vehicle_id": "emergency_dispatch_403",
+      "in_scenario_file": true,
+      "type_matches": true,
+      "destination_matches": true,
+      "depart": 2760.0,
+      "depart_in_validated_file": 2520.0,
+      "depart_taken_from_scenario": true,
+      "departs_after_incident_start": true,
+      "destination_edge": "206720846#7",
+      "route_edge_count": 14
+    }
+  ],
+  "missing_from_route_file": [],
+  "all_dispatches_match_scenario": true,
+  "departures_non_decreasing": true
+}

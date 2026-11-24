@@ -1,0 +1,85 @@
+scenario_name: porto_emergency_seeded_v1
+study_city: Porto, Portugal
+scenario_version: 2
+# v2 (2026-09-04): dispatch departure_time moved to incident start_time + 60 s.
+# In v1 every responder departed ~120 s BEFORE the incident it was responding to,
+# which is physically impossible and produced negative response times once traffic
+# actually flowed. Incident windows are unchanged. Routes are unchanged, so the
+# Gate D reachability validation still holds (route validity is time-independent).
+dispatch_delay_seconds: 60
+source_of_truth:
+  network_validation_report: network/network_validation.json
+  routeability_validation_report: network/routeability_validation.json
+  routeability_trip_file: network/validation/routeability_sample.trips.xml
+  routeability_route_file: network/validation/routeability_sample.rou.xml
+protocol_settings:
+  message_radius_m: 250
+  freshness_window_seconds: 5
+  emergency_vehicle_ratio: 0.06
+  baseline_seed: 20260721
+events:
+  - event_id: 401
+    seed: 20260723
+    incident_type: accident
+    start_time: 900
+    end_time: 1230
+    center_edge: 734630276
+    affected_edges:
+      - 734630276
+    sumo_action: close_edge
+    capacity_factor: 0.0
+    dispatch:
+      vehicle_id: emergency_dispatch_401
+      vehicle_type: ambulance
+      origin_edge: 14327351#2
+      destination_edge: 734630276
+      departure_time: 960
+      validated_route_reference:
+        trip_id: routeability_00008
+        route_status: routeable
+        source_file: network/validation/routeability_sample.trips.xml
+        routed_file: network/validation/routeability_sample.rou.xml
+
+  - event_id: 402
+    seed: 20260724
+    incident_type: fire
+    start_time: 1800
+    end_time: 2100
+    center_edge: 14327545#0
+    affected_edges:
+      - 14327545#0
+    sumo_action: close_edge
+    capacity_factor: 0.0
+    dispatch:
+      vehicle_id: emergency_dispatch_402
+      vehicle_type: fire_truck
+      origin_edge: 1017147077#1
+      destination_edge: 14327545#0
+      departure_time: 1860
+      validated_route_reference:
+        trip_id: routeability_00013
+        route_status: routeable
+        source_file: network/validation/routeability_sample.trips.xml
+        routed_file: network/validation/routeability_sample.rou.xml
+
+  - event_id: 403
+    seed: 20260725
+    incident_type: collision
+    start_time: 2700
+    end_time: 2940
+    center_edge: 206720846#7
+    affected_edges:
+      - 206720846#7
+    sumo_action: close_edge
+    capacity_factor: 0.0
+    dispatch:
+      vehicle_id: emergency_dispatch_403
+      vehicle_type: police
+      origin_edge: 434879921#0
+      destination_edge: 206720846#7
+      departure_time: 2760
+      validated_route_reference:
+        trip_id: routeability_00014
+        route_status: routeable
+        source_file: network/validation/routeability_sample.trips.xml
+        routed_file: network/validation/routeability_sample.rou.xml

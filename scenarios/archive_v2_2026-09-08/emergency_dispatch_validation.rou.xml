@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-08-06T23:04:15.963337+06:00 by Eclipse SUMO duarouter 1.25.0
+<duarouterConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="D:\p3\P2_Banasree\P2_Banasree\Mine\network\porto.net.xml"/>
+        <route-files value="D:\p3\P2_Banasree\P2_Banasree\Mine\network\validation\emergency_dispatch_validation.trips.xml"/>
+    </input>
+
+    <output>
+        <output-file value="D:\p3\P2_Banasree\P2_Banasree\Mine\network\validation\emergency_dispatch_validation.rou.xml"/>
+    </output>
+
+    <report>
+        <error-log value="D:\p3\P2_Banasree\P2_Banasree\Mine\network\validation\emergency_dispatch_validation.log"/>
+    </report>
+
+</duarouterConfiguration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="ambulance" vClass="emergency" color="white"/>
+    <vehicle id="emergency_dispatch_401" type="ambulance" depart="780.00">
+        <route edges="14327351#2 14327351#3 14327351#4 210851328#0 210851328#1 210851328#2 210851328#3 210851328#4 210851328#5 142214758#0 142214758#1 142214758#2 741944102#0 741944102#1 741944102#2 741944102#3 741944102#4 1361914681#0 1361914681#1 1361914681#2 1361914681#3 1361914681#4 190128487#0 190128487#1 190128487#2 734630276"/>
+    </vehicle>
+    <vType id="fire_truck" vClass="emergency" color="red"/>
+    <vehicle id="emergency_dispatch_402" type="fire_truck" depart="1680.00">
+        <route edges="1017147077#1 1017147077#2 1017147077#3 1017147077#4 34916303#0 34916303#1 34916303#2 1174855828 1174855827#0 1174855827#1 1174855827#2 221905591#0 221905591#1 1174835643 1174855824 14327545#0"/>
+    </vehicle>
+    <vType id="police" vClass="emergency" color="blue"/>
+    <vehicle id="emergency_dispatch_403" type="police" depart="2520.00">
+        <route edges="434879921#0 434879921#1 434879921#2 385795770#0 385795770#1 385795770#2 206720846#0 206720846#1 206720846#2 206720846#3 206720846#4 206720846#5 206720846#6 206720846#7"/>
+    </vehicle>
+</routes>
